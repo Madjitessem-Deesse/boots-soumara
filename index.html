@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Soumara - Cuisine Libanaise Authentique</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #CD853F;
+            --accent: #DC143C;
+            --text: #333333;
+            --background: #FFF8F0;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text);
+            background-color: var(--background);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary) !important;
+            font-size: 1.8rem;
+        }
+        
+        .nav-link {
+            color: var(--text) !important;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: #6b330a;
+            border-color: #6b330a;
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/restaurant-interior.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .section-title.text-center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .menu-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .menu-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .price {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s;
+              }
+       .gallery-img {
+         width: 100%;
+         height: 300px; /* Adjust this value as needed */
+         object-fit: cover;
+        }
+      
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(139, 69, 19, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .contact-info i {
+            width: 30px;
+            color: var(--primary);
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        footer h5 {
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: background 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--accent);
+        }
+        
+        .copyright {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Accessibilité */
+        a:focus, button:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .navbar {
+                border-bottom: 2px solid black;
+            }
+            
+            .btn-primary {
+                border: 2px solid black;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .menu-card, .gallery-item img, .gallery-overlay {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Soumara</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#accueil">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Galerie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary" href="#reservation">Réserver</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <h1 class="display-3 fw-bold mb-4">Restaurant Soumara</h1>
+                    <p class="lead mb-5">Découvrez la véritable cuisine libanaise à Moundou</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="#menu" class="btn btn-primary btn-lg">Voir le menu</a>
+                        <a href="#reservation" class="btn btn-outline-light btn-lg">Réserver une table</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="section-title text-center">Notre Menu</h2>
+                <p class="lead">Découvrez nos spécialités libanaises</p>
+            </div>
+            
+            <ul class="nav nav-pills justify-content-center mb-5" id="menuTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="entrees-tab" data-bs-toggle="pill" data-bs-target="#entrees" type="button" role="tab" aria-controls="entrees" aria-selected="true">Entrées</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="plats-tab" data-bs-toggle="pill" data-bs-target="#plats" type="button" role="tab" aria-controls="plats" aria-selected="false">Plats Principaux</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="desserts-tab" data-bs-toggle="pill" data-bs-target="#desserts" type="button" role="tab" aria-controls="desserts" aria-selected="false">Desserts</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="menuTabsContent">
+                <div class="tab-pane fade show active" id="entrees" role="tabpanel" aria-labelledby="entrees-tab">
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-card">
+                                <img src="img/Mezze.png" class="card-img-top" alt="Plateau de mezze libanais">
+                                <div class="card-body">
+                                    <h5 class="card-title">Plateau de Mezze</h5>
+                                    <p class="card-text">Assortiment de houmous, taboulé, baba ghanoush, falafels et feuilles de vigne farcies.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">6 500 FCFA</span>
+                                        <button class="btn btn-sm btn-outline-primary">Commander</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-card">
+                                <img src="img/Houmous.png" class="card-img-top" alt="Houmous traditionnel">
+                                <div class="card-body">
+                                    <h5 class="card-title">Houmous Traditionnel</h5>
+                                    <p class="card-text">Purée de pois chiches au tahini, jus de citron et huile d'olive, servi avec du pain pita.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">3 500 FCFA</span>
+                                        <button class="btn btn-sm btn-outline-primary">Commander</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-card">
+                                <img src="img/Falafels.png" class="card-img-top" alt="Falafels croustillants">
+                                <div class="card-body">
+                                    <h5 class="card-title">Falafels Maison</h5>
+                                    <p class="card-text">Boulettes de pois chiches et fèves aromatisées au persil et coriandre, frites à l'huile.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">6 750 FCFA</span>
+                                        <button class="btn btn-sm btn-outline-primary">Commander</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="plats" role="tabpanel" aria-labelledby="plats-tab">
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-card">
+                                <img src="img/Chawarma.png" class="card-img-top" alt="Chawarma libanais">
+                                <div class="card-body">
+                                    <h5 class="card-title">Chawarma Libanais</h5>
+                                    <p class="card-text">Fine tranche de viande marinée, grillée et servie avec riz aux vermicelles ou pain libanais.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">8 500 FCFA</span>
+                                        <button class="btn btn-sm btn-outline-primary">Commander</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-card">
+                                <img src="img/Kebab.png" class="card-img-top" alt="Kebab à la libanaise">
+                                <div class="card-body">
+                                    <h5 class="card-title">Kebab à la Libanaise</h5>
+                                    <p class="card-text">Brochettes de viande hachée épicée, grillée au charbon de bois, servi avec riz aux pine nuts.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">7 000 FCFA</span>
+                                        <button class="btn btn-sm btn-outline-primary">Commander</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-card">
+                                <img src="img/Mansaf.png" class="card-img-top" alt="Mansaf">
+                                <div class="card-body">
+                                    <h5 class="card-title">Mansaf</h5>
+                                    <p class="card-text">Plat traditionnel jordanien à base d'agneau, de riz et de sauce au yaourt fermenté.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">5 000 FCFA</span>
+                                        <button class="btn btn-sm btn-outline-primary">Commander</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="desserts" role="tabpanel" aria-labelledby="desserts-tab">
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-card">
+                                <img src="img/Baklawa.png" class="card-img-top" alt="Baklawa">
+                                <div class="card-body">
+                                    <h5 class="card-title">Baklawa</h5>
+                                    <p class="card-text">Pâtisserie fine à base de pâte filo, noix et sirop de miel, spécialité orientale.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">4 000 FCFA</span>
+                                        <button class="btn btn-sm btn-outline-primary">Commander</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-card">
+                                <img src="img/Knafeh.png" class="card-img-top" alt="Knafeh">
+                                <div class="card-body">
+                                    <h5 class="card-title">Knafeh</h5>
+                                    <p class="card-text">Dessert à base de fromage filante, semoule fine et sirop à l'eau de rose.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">3 500 FCFA</span>
+                                        <button class="btn btn-sm btn-outline-primary">Commander</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card menu-card">
+                                <img src="img/Maamoul.png" class="card-img-top" alt="Maamoul">
+                                <div class="card-body">
+                                    <h5 class="card-title">Maamoul</h5>
+                                    <p class="card-text">Biscuits fourrés aux dattes ou aux noix, parfumés à l'eau de rose et à l'eau de fleur d'oranger.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="price">2 500 FCFA</span>
+                                        <button class="btn btn-sm btn-outline-primary">Commander</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-primary">Voir le menu complet</a>
+            </div>
+        </div>
+    </section>
+
+ <section id="gallery" class="py-5">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="section-title text-center">Notre Galerie</h2>
+            <p class="lead">Découvrez l'ambiance et les plats du Restaurant Soumara</p>
+        </div>
+        
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item">
+                    <img src="img/Sing.png" class="img-fluid gallery-img" alt="Plat principal servi au restaurant">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white">Plats Signature</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item">
+                    <img src="img/Ambi.png" class="img-fluid gallery-img" alt="Intérieur du restaurant">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white">Ambiance Chaleureuse</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item">
+                    <img src="img/Plateau.png" class="img-fluid gallery-img" alt="Plateau de mezze coloré">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white">Mezze Traditionnels</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item">
+                    <img src="img/Unique.png" class="img-fluid gallery-img" alt="Cuisinier préparant des plats">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white">Cuisine Authentique</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="gallery-item">
+                    <img src="img/Princi.png" class="img-fluid gallery-img" alt="Desserts libanais">
+                    <div class="gallery-overlay">
+                        <h5 class="text-white">Desserts Orientaux</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact & Reservation Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="section-title text-center">Contact & Réservation</h2>
+                <p class="lead">Nous sommes à votre disposition</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h3 class="mb-4">Informations de contact</h3>
+                    <div class="contact-info">
+                        <div class="d-flex mb-3">
+                            <i class="fas fa-map-marker-alt mt-1 me-3"></i>
+                            <div>
+                                <h5>Adresse</h5>
+                                <p>123 Avenue du Marché, Moundou, Tchad</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <i class="fas fa-phone mt-1 me-3"></i>
+                            <div>
+                                <h5>Téléphone</h5>
+                                <p>+235 XX XX XX XX</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <i class="fas fa-envelope mt-1 me-3"></i>
+                            <div>
+                                <h5>Email</h5>
+                                <p>contact@restaurant-soumara.td</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <i class="fas fa-clock mt-1 me-3"></i>
+                            <div>
+                                <h5>Horaires d'ouverture</h5>
+                                <p>Lundi - Samedi: 11h - 22h<br>Dimanche: 11h - 18h</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15610.16300630802!2d16.077499!3d8.566667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMzQnMDAwLjAiTiAxNsKwMDQnMzkuMCJF!5e0!3m2!1sfr!2std!4v1657543213618!5m2!1sfr!2std" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" title="Localisation du Restaurant Soumara à Moundou"></iframe>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <h3 class="mb-4" id="reservation">Réservation en ligne</h3>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Nom complet</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Téléphone</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="guests" class="form-label">Nombre de personnes</label>
+                                <select class="form-select" id="guests">
+                                    <option value="1">1 personne</option>
+                                    <option value="2" selected>2 personnes</option>
+                                    <option value="3">3 personnes</option>
+                                    <option value="4">4 personnes</option>
+                                    <option value="5">5 personnes</option>
+                                    <option value="6">6+ personnes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="date" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="time" class="form-label">Heure</label>
+                                <input type="time" class="form-control" id="time" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="message" class="form-label">Message spécial (anniversaire, allergie, etc.)</label>
+                                <textarea class="form-control" id="message" rows="3"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Réserver une table</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+     <footer class="pt-5 pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <h5>Restaurant Soumara</h5>
+                <p>La meilleure cuisine libanaise de Moundou, préparée avec passion et des ingrédients authentiques. <br>
+                123 Avenue du Marché, Moundou, Tchad<br>
+                Tél: +235 65 97 18 63
+                </p>
+                
+            </div>
+            <div class="col-md-6 mb-4">
+                <h5>Horaires d'ouverture</h5>
+                <ul class="list-unstyled">
+                    <li>Lundi - Samedi: 11h - 22h</li>
+                    <li>Dimanche: 11h - 18h</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright text-center pt-3 mt-3 border-top">
+            <p class="mb-0">&copy; 2025 Restaurant Soumara - Tous droits réservés</p>
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script pour améliorer l'accessibilité
+        document.addEventListener('DOMContentLoaded', function() {
+        
+            // Ajouter aria-current aux liens de navigation
+            const currentPage = window.location.hash || '#accueil';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.setAttribute('aria-current', 'page');
+                }
+            });
+            
+            // Gestion des formulaires
+            const reservationForm = document.querySelector('form');
+            if (reservationForm) {
+                reservationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Merci pour votre réservation! Nous vous contacterons bientôt pour confirmer.');
+                    this.reset();
+                });
+            }
+            
+            // Amélioration de l'accessibilité des tabs
+            const menuTabs = document.querySelectorAll('#menuTabs button');
+            menuTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    menuTabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+                    this.setAttribute('aria-selected', 'true');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
